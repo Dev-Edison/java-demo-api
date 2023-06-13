@@ -25,35 +25,4 @@ public class TrecoController {
 		return trecoRepository.findAll();
 	}
 
-	@PostMapping
-	public Treco post(@RequestBody Treco treco) {
-		return trecoRepository.save(treco);
-	}
-
-	@GetMapping("/{id}")
-	public Treco getOne(@PathVariable Long id) {
-		if (trecoRepository.existsById(id))
-			return trecoRepository.findById(id).get();
-		return null;
-	}
-
-	@DeleteMapping(path = "/{id}", produces = "application/json")
-	public String delete(@PathVariable Long id) {
-		if (trecoRepository.existsById(id)) {
-			trecoRepository.deleteById(id);
-			return "{\"status\":\"deleted\"}";
-		}
-		return "{\"status\":\"error\"}";
-	}
-
-	@PutMapping("/{id}")
-	public Treco put(@PathVariable Long id, @RequestBody Treco treco) {
-		return null;
-	}
-
-	@PatchMapping()
-	public Treco patch(@PathVariable Long id, @RequestBody Treco treco) {
-		return null;
-	}
-
 }
