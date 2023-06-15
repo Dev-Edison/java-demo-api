@@ -1,4 +1,4 @@
-package net.luferat.java.demoapi1;
+package net.luferat.java.demoapi1.model;
 
 import java.util.List;
 
@@ -14,46 +14,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/trecos")
-public class TrecoController {
+@RequestMapping("/usuarios")
+public class UsuarioController {
 
 	@Autowired
-	private TrecoRepository trecoRepository;
-
+	private UsuarioRepository usuarioRepository;
+	
 	@GetMapping
-	public List<Treco> getAll() {
-		return trecoRepository.findAll();
+	public List<Usuario> getAll() {
+		return usuarioRepository.findAll();
 	}
 
 	@GetMapping(path = "/{id}")
-	public Treco getOne(@PathVariable Long id) {
-		if (trecoRepository.existsById(id)) {
-			return trecoRepository.findById(id).get();
+	public Usuario getOne(@PathVariable Long id) {
+		if (usuarioRepository.existsById(id)) {
+			return usuarioRepository.findById(id).get();
 		}
 		return null;
 	}
 
 	@PostMapping
-	public Treco post(@RequestBody Treco treco) {
-		return trecoRepository.save(treco);
+	public Usuario post(@RequestBody Usuario usuario) {
+		return usuarioRepository.save(usuario);
+
 	}
 
 	@DeleteMapping(path = "/{id}", produces = "application/json")
 	public String delete(@PathVariable Long id) {
-		if (trecoRepository.existsById(id)) {
-			trecoRepository.deleteById(id);
-			return "{ \"status\" : \"deleted\" }";
+		if (usuarioRepository.existsById(id)) {
+			usuarioRepository.deleteById(id);
+			return "{\"status\" : \"deleted\" }";
 		}
-		return "{ \"status\" : \"error\" }";
+		return "{\"status\" : \"error\"}";
 	}
-	
+
 	@PutMapping(path = "/{id}")
-	public Treco put(@PathVariable Long id, @RequestBody Treco treco) {
+	public Usuario put(@PathVariable Long id, @RequestBody Usuario usuario) {
 		return null;
 	}
-	
+
 	@PatchMapping(path = "/{id}")
-	public Treco patch(@PathVariable Long id, @RequestBody Treco treco) {
+	public Usuario patch(@PathVariable Long id, @RequestBody Usuario usuario) {
 		return null;
 	}
 

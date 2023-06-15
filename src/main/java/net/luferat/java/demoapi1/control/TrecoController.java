@@ -1,4 +1,4 @@
-package net.luferat.java.demoapi1;
+package net.luferat.java.demoapi1.control;
 
 import java.util.List;
 
@@ -13,65 +13,50 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import net.luferat.java.demoapi1.Treco;
+import net.luferat.java.demoapi1.repository.TrecoRepository;
+
 @RestController
 @RequestMapping("/trecos")
-public class UserController {
+public class TrecoController {
 
-	@SuppressWarnings("unused")
 	@Autowired
-	private  UserController  UserController;
+	private TrecoRepository trecoRepository;
 
 	@GetMapping
-	public List<User> getAll() {
-		return  net.luferat.java.demoapi1.UserController.findAll();
-	}
-
-	private static List<User> findAll() {
-		return null;
+	public List<Treco> getAll() {
+		return trecoRepository.findAll();
 	}
 
 	@GetMapping(path = "/{id}")
 	public Treco getOne(@PathVariable Long id) {
-		if ( net.luferat.java.demoapi1.UserController.existsById(id)) {
-			return  ((Object) net.luferat.java.demoapi1.UserController.findById(id)).get();
+		if (trecoRepository.existsById(id)) {
+			return trecoRepository.findById(id).get();
 		}
 		return null;
 	}
 
-	private static Object findById(Long id) {
-		return null;
-	}
-
-	private static boolean existsById(Long id) {
-		return false;
-	}
-
 	@PostMapping
-	public User post(@RequestBody User user) {
-		return  net.luferat.java.demoapi1.UserController.save(user);
-	}
-
-	private static User save(User user) {
-		// TODO Auto-generated method stub
-		return null;
+	public Treco post(@RequestBody Treco treco) {
+		return trecoRepository.save(treco);
 	}
 
 	@DeleteMapping(path = "/{id}", produces = "application/json")
-	public static String delete(@PathVariable Long id) {
-		if (net.luferat.java.demoapi1.UserController.existsById(id)) {
-			 net.luferat.java.demoapi1.UserController.delete(id);
+	public String delete(@PathVariable Long id) {
+		if (trecoRepository.existsById(id)) {
+			trecoRepository.deleteById(id);
 			return "{ \"status\" : \"deleted\" }";
 		}
 		return "{ \"status\" : \"error\" }";
 	}
 	
 	@PutMapping(path = "/{id}")
-	public User put(@PathVariable Long id, @RequestBody User user) {
+	public Treco put(@PathVariable Long id, @RequestBody Treco treco) {
 		return null;
 	}
 	
 	@PatchMapping(path = "/{id}")
-	public User patch(@PathVariable Long id, @RequestBody User user) {
+	public Treco patch(@PathVariable Long id, @RequestBody Treco treco) {
 		return null;
 	}
 
