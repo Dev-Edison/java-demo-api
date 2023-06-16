@@ -1,4 +1,4 @@
-package net.luferat.java.demoapi1.model;
+package net.luferat.java.demoapi1.usuario;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
